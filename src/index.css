@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'Raydis';
+  src: url('@/assets/fonts/ofont.ru_Raydis.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zekton';
+  src: url('@/assets/fonts/ofont.ru_Zekton.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* NEW LEVEL Brand Colors */
+    --background: 40 1% 23%; /* #3C3C3B */
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 44%; /* #706F6F */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 40 1% 23%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 152 25% 61%; /* #7BBA9F */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 28% 61%; /* #B7997E */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 44%;
+    --muted-foreground: 0 0% 90%; /* Lighter gray for muted text */
+
+    --accent: 152 25% 61%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 152 25% 61%;
+
+    --radius: 0.5rem;
+
+    /* Brand Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(152 25% 61%), hsl(28 28% 61%));
+    --gradient-hero: linear-gradient(135deg, hsl(152 25% 61% / 0.9), hsl(28 28% 61% / 0.9));
+    --gradient-cursor: linear-gradient(90deg, hsl(152 25% 61%), hsl(28 28% 61%));
+
+    /* Shadows */
+    --shadow-brand: 0 10px 30px -10px hsl(162 35% 60% / 0.3);
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as light theme for consistency */
+    --background: 40 1% 23%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 44%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 40 1% 23%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 162 35% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 25% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 44%;
+    --muted-foreground: 0 0% 90%;
+
+    --accent: 162 35% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 1% 32%;
+    --input: 0 1% 32%;
+    --ring: 162 35% 60%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Zekton', sans-serif;
+  }
+
+  /* Custom Cursor Styles */
+  .cursor-trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--gradient-cursor);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease-out;
+  }
+
+  /* Brand Fonts */
+  .font-brand-heading {
+    font-family: 'Raydis', sans-serif;
+    font-weight: normal;
+  }
+
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  /* Utility classes */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .backdrop-blur-brand {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
