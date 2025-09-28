@@ -1,30 +1,38 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { ArrowRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 export const Gallery = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const media = [
     // Residential
-    { type: 'image', src: '/images/residential/photo_2025-01-15_14-29-45.jpg' },
-    { type: 'image', src: '/images/residential/photo_2025-07-01_15-36-21.jpg' },
-    { type: 'image', src: '/images/residential/photo_2025-09-27_20-16-12.jpg' },
-    { type: 'image', src: '/images/residential/photo_2025-09-27_20-16-22.jpg' },
-    { type: 'video', src: '/images/residential/IMG_5515.MOV' },
+    { type: 'video', src: '/new-level-landing/images/residential/r1.MOV' },
+    { type: 'video', src: '/new-level-landing/images/residential/r2.MOV' },
+    { type: 'image', src: '/new-level-landing/images/residential/r3.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r4.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r5.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r6.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r7.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r8.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r9.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r10.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r11.jpg' },
+    { type: 'image', src: '/new-level-landing/images/residential/r12.jpg' },
     // Commercial
-    { type: 'image', src: '/images/commercial/photo_2025-09-27_20-26-52.jpg' },
-    { type: 'image', src: '/images/commercial/photo_2025-09-27_20-37-32 (2).jpg' },
-    { type: 'image', src: '/images/commercial/photo_2025-09-27_20-37-32.jpg' },
-    { type: 'image', src: '/images/commercial/photo_2025-09-27_20-37-33.jpg' },
-    { type: 'video', src: '/images/commercial/IMG_3803.MP4' },
+    { type: 'video', src: '/new-level-landing/images/commercial/c1.MP4' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c2.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c3.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c4.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c5.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c6.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c7.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c8.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c9.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c10.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c11.jpg' },
+    { type: 'image', src: '/new-level-landing/images/commercial/c12.jpg' },
   ];
 
   const scrollToContacts = () => {
@@ -37,12 +45,8 @@ export const Gallery = () => {
   return (
     <section id="gallery" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
+        <div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
         >
           <h2 className="font-brand-heading text-3xl md:text-5xl font-bold mb-6 text-foreground">
             Примеры работ
@@ -51,7 +55,7 @@ export const Gallery = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Посмотрите на результаты нашей работы — каждый проект уникален и выполнен с особым вниманием к деталям
           </p>
-        </motion.div>
+        </div>
 
         {/* Media Carousel */}
         <Carousel
@@ -59,16 +63,12 @@ export const Gallery = () => {
             align: "start",
             loop: true,
           }}
-          className="w-full"
+          className="w-full relative"
         >
           <CarouselContent>
             {media.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
+              <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3">
+                <div>
                   <Card className="overflow-hidden">
                     {item.type === 'image' ? (
                       <img
@@ -84,19 +84,16 @@ export const Gallery = () => {
                       />
                     )}
                   </Card>
-                </motion.div>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/50 hover:bg-background/80 text-foreground" />
+          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/50 hover:bg-background/80 text-foreground" />
         </Carousel>
 
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
+        <div
+          className="text-center mt-8"
         >
           <p className="text-lg text-muted-foreground mb-6">
             Хотите увидеть больше примеров наших работ?
@@ -107,7 +104,7 @@ export const Gallery = () => {
             Запросить портфолио
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

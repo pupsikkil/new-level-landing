@@ -1,15 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, ArrowRight } from 'lucide-react';
 
 export const CTA = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const scrollToContacts = () => {
     const element = document.getElementById('contacts');
     if (element) {
@@ -20,50 +14,34 @@ export const CTA = () => {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
+        <div
           className="bg-primary rounded-2xl p-8 md:p-16 text-center text-white shadow-brand relative overflow-hidden"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
         >
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-90 rounded-2xl" />
           
           <div className="relative z-10">
-            <motion.h2
+            <h2
               className="font-brand-heading text-3xl md:text-5xl font-bold mb-6 text-shadow"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
             >
               Хотите ремонт без стресса?
-            </motion.h2>
+            </h2>
 
-            <motion.p
+            <p
               className="text-xl md:text-2xl mb-8 text-shadow opacity-95"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
             >
               Доверьтесь NEW LEVEL!
-            </motion.p>
+            </p>
 
-            <motion.p
+            <p
               className="text-lg mb-10 max-w-2xl mx-auto opacity-90 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
             >
               Получите бесплатную консультацию и узнайте, как мы можем превратить 
               ваше пространство в место мечты. Работаем быстро, качественно и с гарантией.
-            </motion.p>
+            </p>
 
-            <motion.div
+            <div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
             >
               <Button
                 size="lg"
@@ -89,35 +67,17 @@ export const CTA = () => {
                   Гарантия качества
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Decorative elements */}
-            <motion.div
+            <div
               className="absolute -top-10 -left-10 w-20 h-20 rounded-full bg-white/10"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3] 
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
             />
-            <motion.div
+            <div
               className="absolute -bottom-10 -right-10 w-16 h-16 rounded-full bg-white/10"
-              animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.6, 0.3, 0.6] 
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

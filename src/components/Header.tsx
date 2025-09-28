@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
 
@@ -27,28 +26,21 @@ export const Header = () => {
   };
 
   return (
-    <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'backdrop-blur-brand shadow-soft' : 'bg-transparent'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background shadow-soft"
     >
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div
+          <div
             className="cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
             onClick={() => scrollToSection('home')}
           >
-            <img src="/logo.png" alt="New Level Logo" className="h-16 w-auto" />
-          </motion.div>
+            <img src="/new-level-landing/logo.png" alt="New Level Logo" className="h-16 w-auto" />
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-12 text-lg">
+          <div className="hidden lg:flex items-center space-x-12 text-lg">
             <button
               onClick={() => scrollToSection('home')}
               className="text-transparent bg-clip-text bg-gradient-brand hover:opacity-80 transition-opacity duration-300"
@@ -95,17 +87,15 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
+            className="lg:hidden text-foreground hover:text-primary transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
 
         {/* Mobile Navigation */}
-        <motion.div
-          className={`md:hidden overflow-hidden ${isMobileMenuOpen ? 'max-h-64' : 'max-h-0'}`}
-          animate={{ opacity: isMobileMenuOpen ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
+        <div
+          className={`lg:hidden overflow-hidden ${isMobileMenuOpen ? 'max-h-screen' : 'max-h-0'}`}
         >
           <div className="pt-4 pb-2 space-y-4">
             <button
@@ -146,8 +136,8 @@ export const Header = () => {
               Оставить заявку
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.header>
+    </header>
   );
 };

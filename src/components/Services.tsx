@@ -1,8 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { 
   Home, 
   Building, 
@@ -15,9 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const Services = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const services = [
     {
       icon: Home,
@@ -52,12 +46,8 @@ export const Services = () => {
   return (
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
+        <div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
         >
           <h2 className="font-brand-heading text-3xl md:text-5xl font-bold mb-6 text-foreground">
             Наши услуги
@@ -67,15 +57,12 @@ export const Services = () => {
             Мы предлагаем полный спектр услуг по ремонту и дизайну, 
             обеспечивая высокое качество на каждом этапе работы
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {services.map((service, index) => (
-            <motion.div
+          {services.map((service) => (
+            <div
               key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <Card className="h-full hover:shadow-brand transition-all duration-300 group cursor-pointer">
                 <CardContent className="p-6">
@@ -102,25 +89,14 @@ export const Services = () => {
                       </li>
                     ))}
                   </ul>
-
-                  <Button
-                    className="w-full text-primary hover:text-primary-foreground hover:bg-primary group-hover:shadow-brand transition-all"
-                    onClick={scrollToContacts}
-                  >
-                    Узнать подробнее
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
+        <div
           className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
         >
           <Button
             onClick={scrollToContacts}
@@ -129,7 +105,7 @@ export const Services = () => {
             Получить консультацию
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

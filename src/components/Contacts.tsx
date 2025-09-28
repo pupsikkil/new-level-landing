@@ -1,8 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
@@ -15,9 +12,6 @@ import {
 } from 'lucide-react';
 
 export const Contacts = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const contactInfo = [
     {
       icon: Phone,
@@ -60,12 +54,8 @@ export const Contacts = () => {
   return (
     <section id="contacts" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
+        <div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
         >
           <h2 className="font-brand-heading text-3xl md:text-5xl font-bold mb-6 text-foreground">
             Контакты
@@ -75,23 +65,17 @@ export const Contacts = () => {
             Свяжитесь с нами удобным способом. Мы ответим на все ваши вопросы 
             и предоставим бесплатную консультацию
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
           {/* Contact Information */}
-          <motion.div
+          <div
             className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="grid gap-6">
-              {contactInfo.map((item, index) => (
-                <motion.div
+              {contactInfo.map((item) => (
+                <div
                   key={item.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                 >
                   <Card className="hover:shadow-brand transition-all duration-300 group">
                     <CardContent className="p-6">
@@ -113,16 +97,13 @@ export const Contacts = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Quick Action Buttons */}
-            <motion.div
+            <div
               className="space-y-4 pt-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
             >
               <Button
                 size="lg"
@@ -150,15 +131,12 @@ export const Contacts = () => {
                 Позвонить сейчас
               </Button>
 
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Map */}
-          <motion.div
+          <div
             className="bg-background rounded-lg shadow-soft overflow-hidden"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="p-6 border-b">
               <h3 className="font-brand-heading text-xl font-bold text-foreground mb-2">
@@ -179,15 +157,12 @@ export const Contacts = () => {
                 className="w-full h-full"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Contact Form CTA */}
-        <motion.div
+        <div
           className="text-center bg-background rounded-lg p-8 shadow-soft"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1.0 }}
         >
           <h3 className="font-brand-heading text-2xl font-bold mb-4 text-foreground">
             Оставьте заявку прямо сейчас
@@ -217,7 +192,7 @@ export const Contacts = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

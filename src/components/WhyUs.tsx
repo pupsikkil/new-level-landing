@@ -1,15 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Calendar, Users, FileText, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const WhyUs = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const advantages = [
     {
       icon: Calendar,
@@ -44,12 +38,8 @@ export const WhyUs = () => {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
+        <div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
         >
           <h2 className="font-brand-heading text-3xl md:text-5xl font-bold mb-6 text-foreground">
             Почему выбирают нас
@@ -58,25 +48,20 @@ export const WhyUs = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Мы гордимся нашими принципами работы и стремимся к долгосрочному сотрудничеству с каждым клиентом
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {advantages.map((advantage, index) => (
-            <motion.div
+          {advantages.map((advantage) => (
+            <div
               key={advantage.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <Card className="h-full hover:shadow-brand transition-all duration-300 group border-0 shadow-soft">
                 <CardContent className="p-6 text-center">
-                  <motion.div
+                  <div
                     className={`w-16 h-16 rounded-full ${advantage.bgColor} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
                   >
                     <advantage.icon className={`w-8 h-8 ${advantage.color}`} />
-                  </motion.div>
+                  </div>
 
                   <h3 className="font-brand-heading text-xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
                     {advantage.title}
@@ -87,15 +72,12 @@ export const WhyUs = () => {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
+        <div
           className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
         >
           <div className="bg-gradient-brand rounded-lg p-8 text-white">
             <h3 className="font-brand-heading text-2xl md:text-3xl font-bold mb-4">
@@ -119,7 +101,7 @@ export const WhyUs = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
